@@ -1,0 +1,47 @@
+/* CpSkipLink. Hidden until it receives keyboard focus, then shown as a key cap in the top
+   left corner of the nearest positioned ancestor (normally the page). */
+
+.cp-skip-link {
+  position: absolute;
+  top: var(--cp-space-2);
+  inset-inline-start: var(--cp-space-2);
+  z-index: 1000;
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--cp-target);
+  padding: 0 var(--cp-space-4);
+  border-radius: var(--cp-radius-key);
+  background: linear-gradient(180deg, var(--cp-key-hi) 0%, var(--cp-key) 45%, var(--cp-key-lo) 100%);
+  box-shadow: var(--cp-key-shadow);
+  color: var(--cp-ink);
+  font-family: var(--cp-font);
+  font-size: var(--cp-text-body);
+  font-weight: var(--cp-weight-medium);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  white-space: nowrap;
+}
+
+/* Visually hidden while it does not have focus. */
+.cp-skip-link:not(:focus) {
+  width: 1px;
+  height: 1px;
+  min-height: 0;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  box-shadow: none;
+}
+
+.cp-skip-link:focus-visible {
+  outline: var(--cp-focus-width) solid var(--cp-focus);
+  outline-offset: var(--cp-focus-offset);
+}
+
+@media (max-width: 599px) {
+  .cp-skip-link { white-space: normal; max-width: calc(100vw - 2 * var(--cp-space-4)); }
+}
+
+@media (forced-colors: active) {
+  .cp-skip-link { border: 1px solid ButtonText; background: ButtonFace; color: LinkText; }
+}

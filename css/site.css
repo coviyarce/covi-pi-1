@@ -63,3 +63,6 @@ img { max-width: 100%; height: auto; display: block; }
 .site-foot { display: flex; align-items: center; gap: var(--cp-space-4); padding-block: var(--cp-space-16) var(--cp-space-8); }
 .site-foot .cp-grille-block { width: 48px; height: 24px; flex: none; }
 .sr-status { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+
+/* Big cards use the satin surface (Covi-pi-1 v2.2 surface rule), not the inset panel well. */
+.satin { background: var(--cp-surface-satin); box-shadow: var(--cp-surface-satin-shadow); border-radius: var(--cp-radius-panel); }
