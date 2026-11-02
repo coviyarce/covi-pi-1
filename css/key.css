@@ -1,0 +1,127 @@
+/* CpKey. A generic key cap: white, a 2 px lower lip and a soft shadow, no outline.
+   1u is one key unit square; 2u spans two units and the groove between them.
+   A toggle key carries aria-pressed, a small LED and the pressed (sunk) look. */
+
+.cp-key {
+  --cp-key-w: var(--cp-unit);
+  position: relative;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--cp-space-1);
+  width: var(--cp-key-w);
+  min-width: var(--cp-target);
+  height: var(--cp-unit);
+  min-height: var(--cp-target);
+  /* Equal padding on every side: the legend (glyph and label) sits on the centre of the cap,
+     the focus ring is drawn around the cap, so the two share one centre. */
+  padding: var(--cp-space-1);
+  border: none;
+  border-radius: var(--cp-radius-key);
+  background: linear-gradient(180deg, var(--cp-key-hi) 0%, var(--cp-key) 45%, var(--cp-key-lo) 100%);
+  box-shadow: var(--cp-key-shadow);
+  color: var(--cp-ink);
+  font-family: var(--cp-font);
+  cursor: pointer;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  transition: box-shadow var(--cp-state) var(--cp-ease), transform var(--cp-press) var(--cp-ease);
+}
+
+.cp-key--2u { --cp-key-w: calc(var(--cp-unit) * 2 + var(--cp-gap)); }
+
+/* Inside a panel grid the key fills its cell. */
+.cp-panel > .cp-key,
+.cp-key-panel__cell > .cp-key { width: 100%; }
+
+.cp-key:hover { box-shadow: var(--cp-key-shadow-hover); }
+
+.cp-key:active:not([aria-disabled="true"]),
+.cp-key.is-pressed {
+  background: var(--cp-key-pressed);
+  box-shadow: var(--cp-key-shadow-pressed);
+  transform: translateY(2px);
+}
+
+.cp-key:focus-visible {
+  outline: var(--cp-focus-width) solid var(--cp-focus);
+  outline-offset: var(--cp-focus-offset);
+  z-index: 1;
+}
+
+.cp-key__label {
+  font-size: var(--cp-text-label);
+  line-height: 1.1;
+  letter-spacing: 0.02em;
+  color: var(--cp-ink-muted);
+  text-align: center;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+}
+
+.cp-key__number {
+  position: absolute;
+  top: var(--cp-space-1);
+  inset-inline-start: var(--cp-space-2);
+  font-family: var(--cp-font-mono);
+  font-variant-numeric: tabular-nums;
+  font-size: var(--cp-text-label);
+  line-height: 1;
+  color: var(--cp-ink-muted);
+}
+
+.cp-key__led {
+  position: absolute;
+  top: var(--cp-space-2);
+  inset-inline-end: var(--cp-space-2);
+}
+
+.cp-key__glyph {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+.cp-key--glyph-only .cp-key__glyph { width: 24px; height: 24px; }
+
+.cp-key__glyph--ink { color: var(--cp-ink); }
+.cp-key__glyph--blue { color: var(--cp-blue-text); }
+.cp-key__glyph--green { color: var(--cp-green-text); }
+.cp-key__glyph--orange { color: var(--cp-orange-text); }
+.cp-key__glyph--red { color: var(--cp-red-text); }
+
+@media (max-width: 599px) {
+  .cp-key__number { inset-inline-start: var(--cp-space-1); top: 2px; }
+  .cp-key__led { top: var(--cp-space-1); inset-inline-end: var(--cp-space-1); }
+  .cp-key:not(.cp-key--glyph-only) .cp-key__glyph { width: 16px; height: 16px; }
+}
+
+/* disabled: flat, dashed edge, muted text */
+.cp-key[aria-disabled="true"] {
+  background: var(--cp-key-lo);
+  box-shadow: none;
+  outline: 1px dashed var(--cp-well-line);
+  outline-offset: -1px;
+  color: var(--cp-ink-muted);
+  cursor: not-allowed;
+  transform: none;
+}
+.cp-key[aria-disabled="true"]:focus-visible {
+  outline: var(--cp-focus-width) solid var(--cp-focus);
+  outline-offset: var(--cp-focus-offset);
+}
+.cp-key[aria-disabled="true"] .cp-key__glyph { color: var(--cp-ink-muted); }
+
+@media (forced-colors: active) {
+  .cp-key { border: 1px solid ButtonText; color: ButtonText; }
+  .cp-key__label, .cp-key__number, .cp-key__glyph { color: ButtonText; }
+  .cp-key.is-pressed { background: Highlight; border-color: Highlight; }
+  .cp-key.is-pressed .cp-key__label,
+  .cp-key.is-pressed .cp-key__number,
+  .cp-key.is-pressed .cp-key__glyph { color: HighlightText; }
+  .cp-key__led { background: ButtonText; }
+  .cp-key.is-pressed .cp-key__led { background: HighlightText; }
+  .cp-key[aria-disabled="true"] { border-style: dashed; color: GrayText; }
+  .cp-key[aria-disabled="true"] .cp-key__label { color: GrayText; }
+  .cp-key:focus-visible { outline: 2px solid Highlight; }
+}

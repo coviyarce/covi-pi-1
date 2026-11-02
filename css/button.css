@@ -1,0 +1,134 @@
+/* CpButton. A key cap you press. Primary carries the orange "record" disc; it is the one
+   primary action per view. Secondary is a plain key. Tertiary is printed text. Danger carries a
+   red disc and a red label. */
+
+.cp-button {
+  --cp-button-height: var(--cp-control);
+  --cp-button-pad: var(--cp-control-pad);
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--cp-space-2);
+  min-height: var(--cp-button-height);
+  min-width: var(--cp-target);
+  padding: 0 var(--cp-button-pad);
+  /* Inline next to other buttons, an inline-flex box sits on its first item's baseline: a
+     leading icon or the record disc dropped the button 4.6 px below a text-only one. */
+  vertical-align: top;
+  border: none;
+  border-radius: var(--cp-radius-key);
+  background: linear-gradient(180deg, var(--cp-key-hi) 0%, var(--cp-key) 45%, var(--cp-key-lo) 100%);
+  box-shadow: var(--cp-key-shadow);
+  color: var(--cp-ink);
+  font-family: var(--cp-font);
+  font-size: var(--cp-text-body);
+  font-weight: var(--cp-weight-regular);
+  line-height: 1.2;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  cursor: pointer;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  transition: box-shadow var(--cp-state) var(--cp-ease), transform var(--cp-press) var(--cp-ease), background-color var(--cp-state) var(--cp-ease);
+}
+
+.cp-button:hover {
+  box-shadow: var(--cp-key-shadow-hover);
+}
+
+/* a toggle key that is on (aria-pressed="true") stays pressed in, like the toolbar's toggles; the
+   focus ring of base.css then follows its 1 px lip */
+.cp-button:active:not([aria-disabled="true"]),
+.cp-button.is-pressed,
+.cp-button[aria-pressed="true"]:not([aria-disabled="true"]) {
+  background: var(--cp-key-pressed);
+  box-shadow: var(--cp-key-shadow-pressed);
+  transform: translateY(2px);
+}
+
+.cp-button:focus-visible {
+  outline: var(--cp-focus-width) solid var(--cp-focus);
+  outline-offset: var(--cp-focus-offset);
+}
+
+/* sizes */
+.cp-button--sm { --cp-button-height: var(--cp-target); --cp-button-pad: var(--cp-space-4); font-size: var(--cp-text-caption); }
+.cp-button--lg { --cp-button-height: 64px; --cp-button-pad: var(--cp-space-8); font-size: var(--cp-text-lead); }
+.cp-button--full { display: flex; width: 100%; }
+
+/* the disc: the record light on primary, red on danger */
+.cp-button__disc {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  background: radial-gradient(circle at 35% 30%, color-mix(in srgb, var(--cp-orange) 70%, #FFFFFF) 0%, var(--cp-orange) 55%, color-mix(in srgb, var(--cp-orange) 80%, #000000) 100%);
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.12);
+}
+
+.cp-button--primary { font-weight: var(--cp-weight-medium); }
+
+.cp-button--danger { color: var(--cp-red-text); font-weight: var(--cp-weight-medium); }
+.cp-button--danger .cp-button__disc {
+  background: radial-gradient(circle at 35% 30%, color-mix(in srgb, var(--cp-red) 70%, #FFFFFF) 0%, var(--cp-red) 55%, color-mix(in srgb, var(--cp-red) 80%, #000000) 100%);
+}
+
+.cp-button--tertiary {
+  background: transparent;
+  box-shadow: none;
+  padding: 0 var(--cp-space-3);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+}
+.cp-button--tertiary:hover { box-shadow: none; text-decoration-thickness: 2px; }
+.cp-button--tertiary:active:not([aria-disabled="true"]) { background: var(--cp-well); box-shadow: var(--cp-well-shadow); transform: none; }
+
+/* icon only: square key. A fixed height (not just min-height) keeps it square in a stretching
+   flex row, where a small key used to grow to 44 x 48 with a rectangular focus ring; it centres
+   on the row instead. No gap, so a second flex item can never push the icon off the centre
+   that the focus ring is drawn around. */
+.cp-button--icon {
+  width: var(--cp-button-height);
+  height: var(--cp-button-height);
+  align-self: center;
+  padding: 0;
+  gap: 0;
+}
+
+.cp-button__icon {
+  display: block;
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  stroke-width: 1.5;
+}
+
+/* disabled: flat, dashed edge, a visible reason sits next to it (see the story) */
+.cp-button[aria-disabled="true"] {
+  background: var(--cp-key-lo);
+  box-shadow: inset 0 0 0 1px var(--cp-well-line);
+  color: var(--cp-ink-muted);
+  cursor: not-allowed;
+  transform: none;
+}
+.cp-button[aria-disabled="true"] .cp-button__disc { background: var(--cp-ink-faint); }
+
+/* loading keeps its size; the spinner replaces the disc */
+.cp-button__spinner {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 2px solid var(--cp-well-line);
+  border-top-color: var(--cp-ink);
+  animation: cp-spin 800ms linear infinite;
+  flex-shrink: 0;
+}
+
+@keyframes cp-spin { to { transform: rotate(360deg); } }
+
+@media (forced-colors: active) {
+  .cp-button { border: 1px solid ButtonText; }
+  .cp-button[aria-disabled="true"] { border-style: dashed; color: GrayText; }
+}

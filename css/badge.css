@@ -1,0 +1,31 @@
+/* CpBadge. A recessed pill with a status LED and a short printed label. */
+
+.cp-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--cp-space-2);
+  max-width: 100%;
+  min-height: var(--cp-space-6);
+  padding: 0 var(--cp-space-3);
+  border-radius: var(--cp-space-3);
+  background: var(--cp-well);
+  box-shadow: var(--cp-well-shadow);
+  color: var(--cp-ink);
+  font-family: var(--cp-font);
+  font-size: var(--cp-text-label);
+  font-weight: var(--cp-weight-medium);
+  line-height: 1.2;
+  letter-spacing: 0.02em;
+  vertical-align: middle;
+}
+
+.cp-badge .cp-led { box-shadow: 0 0 0 2px var(--cp-key-lo); }
+.cp-badge .cp-led--on { box-shadow: 0 0 0 2px var(--cp-key-lo), 0 0 6px var(--cp-led); }
+
+.cp-badge__label { min-width: 0; overflow-wrap: anywhere; }
+/* The label stays in --cp-ink for every tone: the green and orange text tokens fall under 4.5:1
+   on the well. The LED carries the colour, the words carry the meaning. */
+
+@media (forced-colors: active) {
+  .cp-badge { border: 1px solid CanvasText; }
+}

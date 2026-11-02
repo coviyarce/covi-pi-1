@@ -1,0 +1,104 @@
+/* CpDisplay. A black OLED glass panel set straight into the body. Thin white lines, mono text, no colour.
+   The bevel is the edge of the glass itself (no frame around it): a 4 px chamfer lit from the top and
+   darker at the bottom. It looks the same in both themes, because the display is black glass on any body. */
+
+.cp-display {
+  margin: 0;
+  min-width: 0;
+  border-radius: calc(var(--cp-radius-oled) + var(--cp-space-1));
+}
+
+.cp-display__screen {
+  display: flex;
+  flex-direction: column;
+  gap: var(--cp-space-2);
+  min-height: 132px;
+  padding: var(--cp-space-3) var(--cp-space-4);
+  /* The glare follows the pointer: CpDisplay sets --cp-glare-x / --cp-glare-y while the pointer is over the
+     screen (not under reduced motion); otherwise it rests at the top-left, where the light comes from. */
+  --cp-oled-glare: radial-gradient(140% 70% at var(--cp-glare-x, 22%) var(--cp-glare-y, -18%),
+    rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.02) 42%, transparent 60%);
+  /* The bevel is soft light inside the glass edge (--cp-oled-bevel), so it fades into the face with no line. */
+  background: var(--cp-oled-glare), var(--cp-oled);
+  border-radius: inherit;
+  box-shadow: var(--cp-oled-bevel-shadow), var(--cp-oled-bevel);
+  color: var(--cp-oled-ink);
+  font-family: var(--cp-font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+.cp-display__head,
+.cp-display__foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--cp-space-3);
+  font-size: var(--cp-text-label);
+  line-height: 1.3;
+  letter-spacing: 0.04em;
+}
+
+.cp-display__title { color: var(--cp-oled-dim); text-transform: uppercase; }
+.cp-display__aside { color: var(--cp-oled-dim); }
+.cp-display__axes { color: var(--cp-oled-dim); }
+.cp-display__readout { color: var(--cp-oled-ink); font-size: var(--cp-text-caption); margin-inline-start: auto; }
+
+.cp-display__body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 0;
+}
+
+.cp-display__value {
+  margin: 0;
+  font-size: var(--cp-text-h1);
+  font-weight: var(--cp-weight-regular);
+  line-height: 1.1;
+  overflow-wrap: anywhere;
+}
+.cp-display__unit { font-size: var(--cp-text-body); color: var(--cp-oled-dim); }
+
+.cp-display__empty { margin: 0; font-size: var(--cp-text-caption); color: var(--cp-oled-dim); }
+
+/* line graphics */
+.cp-display__graphic { display: block; width: 100%; height: 72px; overflow: visible; }
+.cp-display__reels { height: 80px; }
+.cp-display__trace { fill: none; stroke: var(--cp-oled-ink); stroke-width: 1.5; vector-effect: non-scaling-stroke; stroke-linejoin: round; stroke-linecap: round; }
+.cp-display__axis { stroke: var(--cp-oled-dim); stroke-width: 1; vector-effect: non-scaling-stroke; }
+.cp-display__point { fill: var(--cp-oled); stroke: var(--cp-oled-ink); stroke-width: 1.5; vector-effect: non-scaling-stroke; }
+
+.cp-display__reel { transform-box: view-box; }
+.cp-display__reels.is-running .cp-display__reel { animation: cp-reel-spin 2400ms linear infinite; }
+@keyframes cp-reel-spin { to { transform: rotate(360deg); } }
+
+/* level meters */
+.cp-display__meters { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--cp-space-2); }
+.cp-display__meter {
+  display: grid;
+  grid-template-columns: 3ch 1fr 4ch;
+  align-items: center;
+  gap: var(--cp-space-2);
+  font-size: var(--cp-text-caption);
+}
+.cp-display__meter-label { color: var(--cp-oled-dim); }
+.cp-display__meter-num { text-align: end; }
+.cp-display__meter-bar { display: grid; grid-template-columns: repeat(16, 1fr); gap: 2px; height: 10px; }
+.cp-display__segment { background: var(--cp-oled-line); border-radius: 1px; }
+.cp-display__segment.is-lit { background: var(--cp-oled-ink); }
+
+@media (prefers-reduced-motion: reduce) {
+  .cp-display__reels.is-running .cp-display__reel { animation: none; }
+}
+
+@media (forced-colors: active) {
+  .cp-display { border: 1px solid CanvasText; }
+  .cp-display__screen { forced-color-adjust: none; background: Canvas; color: CanvasText; box-shadow: none; }
+  .cp-display__title, .cp-display__aside, .cp-display__axes, .cp-display__unit, .cp-display__meter-label { color: CanvasText; }
+  .cp-display__trace { stroke: CanvasText; }
+  .cp-display__axis { stroke: CanvasText; }
+  .cp-display__point { fill: Canvas; stroke: CanvasText; }
+  .cp-display__segment { background: Canvas; outline: 1px solid CanvasText; }
+  .cp-display__segment.is-lit { background: CanvasText; }
+}

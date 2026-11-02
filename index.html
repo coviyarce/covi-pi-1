@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en" data-theme="system">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Covi-pi-1 Design</title>
+  <meta name="description" content="Covi-pi-1 Design: a tactile, hardware-inspired design system for the web. 124 Vue 3 components and CSS tokens, WCAG 2.2 AA, licensed CC BY 4.0. Request access to the repository.">
+  <meta property="og:title" content="Covi-pi-1 Design">
+  <meta property="og:description" content="A tactile, hardware-inspired design system for the web: aluminium, key caps, knobs and an OLED read-out.">
+  <meta property="og:image" content="https://coviyarce.github.io/covi-pi-1/img/device-light.png">
+  <meta name="color-scheme" content="light dark">
+  <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+  <!-- The page is built from Covi-pi-1's own stylesheets (dist/ of v3.0.0): tokens, base, fonts and a few components. -->
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/fonts.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/button.css">
+  <link rel="stylesheet" href="css/key.css">
+  <link rel="stylesheet" href="css/display.css">
+  <link rel="stylesheet" href="css/status-light.css">
+  <link rel="stylesheet" href="css/grille.css">
+  <link rel="stylesheet" href="css/kbd.css">
+  <link rel="stylesheet" href="css/site.css">
+  <script>
+    // Theme before first paint: saved choice, else follow the system.
+    try { const t = localStorage.getItem('cp-theme'); if (t) document.documentElement.dataset.theme = t } catch (e) {}
+  </script>
+</head>
+<body class="cp-body">
+  <a class="cp-skip-link" href="#main">Skip to content</a>
+
+  <header class="site-head">
+    <div class="wrap site-head__row">
+      <a class="brand" href="./" aria-label="Covi-pi-1 Design, home">
+        <span class="cp-grille cp-grille-block cp-grille-block--sm cp-grille-block--round" aria-hidden="true"></span>
+        <span class="brand__name">Covi-pi-1</span>
+      </a>
+      <nav aria-label="Page" class="site-nav">
+        <a class="cp-link" href="#parts">Parts</a>
+        <a class="cp-link" href="#inside">Inside</a>
+        <a class="cp-link" href="#access">Access</a>
+        <a class="cp-link" href="#licence">Licence</a>
+      </nav>
+      <button type="button" class="cp-button cp-button--tertiary cp-button--sm" id="theme" aria-label="Theme: follow the system">
+        <span class="cp-button__label" id="theme-label">System</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero wrap" aria-labelledby="h-hero">
+      <div class="hero__text">
+        <span class="cp-status-light cp-status-light--on"><span class="cp-led cp-status-light__led cp-led--green cp-led--on" aria-hidden="true"></span><span class="cp-status-light__text">v3.0.0 · CC BY 4.0</span></span>
+        <h1 id="h-hero" class="cp-h1">A design system you can almost touch.</h1>
+        <p class="cp-lead">Covi-pi-1 is a tactile, hardware-inspired design system for the web: an aluminium body, white key caps, coloured knobs and a black OLED read-out, as 124 Vue&nbsp;3 components and CSS tokens.</p>
+        <div class="hero__actions">
+          <a class="cp-button cp-button--primary cp-button--lg" href="https://github.com/coviyarce/covi-pi-1/issues/new?template=request-access.yml">
+            <span class="cp-button__disc" aria-hidden="true"></span><span class="cp-button__label">Request access</span>
+          </a>
+          <a class="cp-button cp-button--lg" href="https://op1.covilabs.com">
+            <span class="cp-button__label">Open the live Storybook</span>
+          </a>
+        </div>
+      </div>
+      <figure class="hero__device">
+        <img class="only-light" src="img/device-light.png" width="996" height="1033" alt="The Covi-pi-1 device pattern in the light theme: speaker grilles, three OLED displays, four coloured knobs and a preset dial, track and transport keys, a 16-step sequencer, an XY filter pad and a piano keyboard.">
+        <img class="only-dark" src="img/device-dark.png" width="992" height="1030" alt="The same device pattern in the dark Graphite theme." loading="lazy">
+      </figure>
+    </section>
+
+    <section class="wrap readouts" aria-label="At a glance">
+      <figure class="cp-display cp-display--text">
+        <div class="cp-display__screen"><div class="cp-display__head"><span class="cp-display__title">Components</span></div>
+        <div class="cp-display__body"><p class="cp-display__value">124</p></div></div>
+      </figure>
+      <figure class="cp-display cp-display--text">
+        <div class="cp-display__screen"><div class="cp-display__head"><span class="cp-display__title">Stories</span></div>
+        <div class="cp-display__body"><p class="cp-display__value">927</p></div></div>
+      </figure>
+      <figure class="cp-display cp-display--text">
+        <div class="cp-display__screen"><div class="cp-display__head"><span class="cp-display__title">Themes</span></div>
+        <div class="cp-display__body"><p class="cp-display__value">2<span class="cp-display__unit">&nbsp;+ sys</span></p></div></div>
+      </figure>
+      <figure class="cp-display cp-display--text">
+        <div class="cp-display__screen"><div class="cp-display__head"><span class="cp-display__title">WCAG</span></div>
+        <div class="cp-display__body"><p class="cp-display__value">2.2<span class="cp-display__unit">&nbsp;AA</span></p></div></div>
+      </figure>
+    </section>
+
+    <section id="parts" class="wrap section" aria-labelledby="h-parts">
+      <p class="cp-label">The visual language</p>
+      <h2 id="h-parts" class="cp-h2">Five physical parts, every screen</h2>
+      <div class="parts">
+        <article class="cp-panel part">
+          <h3 class="cp-h3">Aluminium body</h3>
+          <p class="cp-text">Calm, light surfaces that hold everything else; Graphite in the dark theme.</p>
+        </article>
+        <article class="cp-panel part">
+          <h3 class="cp-h3">White key caps</h3>
+          <p class="cp-text">Raised keys set into thin grooves. Pressing one feels like pressing hardware.</p>
+          <div class="part__demo">
+            <button type="button" class="cp-key" aria-pressed="false" data-toggle><span class="cp-key__number" aria-hidden="true">1</span><span class="cp-led cp-key__led" aria-hidden="true"></span><span class="cp-key__label">Drum</span></button>
+            <button type="button" class="cp-key" aria-pressed="true" data-toggle><span class="cp-key__number" aria-hidden="true">2</span><span class="cp-led cp-key__led cp-led--green cp-led--on" aria-hidden="true"></span><span class="cp-key__label">Bass</span></button>
+          </div>
+        </article>
+        <article class="cp-panel part">
+          <h3 class="cp-h3">Coloured knobs</h3>
+          <p class="cp-text">Blue, green, white and orange caps: the only strong colour on the page.</p>
+          <img src="img/knobs.png" width="491" height="176" alt="Four knobs labelled Attack, Decay, Sustain and Release with blue, green, white and orange caps." loading="lazy">
+        </article>
+        <article class="cp-panel part">
+          <h3 class="cp-h3">OLED display</h3>
+          <p class="cp-text">Black glass for numbers, meters and status, set in a mono typeface.</p>
+          <img src="img/display-tape.png" width="393" height="189" alt="An OLED display with two tape reels and a time counter." loading="lazy">
+        </article>
+        <article class="cp-panel part">
+          <h3 class="cp-h3">Grille and dots</h3>
+          <p class="cp-text">Speaker grilles and small "sharp" dots as quiet decoration and signals.</p>
+          <div class="part__demo"><span class="cp-grille cp-grille-block cp-grille-block--md" aria-hidden="true"></span></div>
+        </article>
+      </div>
+    </section>
+
+    <section id="inside" class="wrap section" aria-labelledby="h-inside">
+      <p class="cp-label">What's inside</p>
+      <h2 id="h-inside" class="cp-h2">A full system, with a hardware family no one else has</h2>
+      <ul class="features">
+        <li><strong>124 components.</strong> Actions, inputs, selection, date and time, data display, feedback, overlays, navigation and layout, plus Knob, Encoder, Key, KeyPanel, Display, Sequencer, Transport, Piano, XYPad, PatchPoint, StereoMeter, TapeCounter and DeviceScreen.</li>
+        <li><strong>Accessible by default.</strong> WAI-ARIA patterns, keyboard-only use, visible focus, 4.5:1 text in both themes. Every one of the 927 stories is checked with axe and has a keyboard test.</li>
+        <li><strong>Two themes and theming.</strong> Aluminium and Graphite, follow-the-system, compact density and a runtime theming API without a flash on load.</li>
+        <li><strong>Tokens first.</strong> W3C DTCG JSON that builds CSS variables, a JS module and a Tokens Studio file for Figma.</li>
+        <li><strong>English, Spanish, right-to-left.</strong> Built-in strings and logical CSS everywhere.</li>
+        <li><strong>Vue or plain CSS.</strong> Use the Vue 3 components, or one stylesheet of plain classes; a PrimeVue 4 skin is included.</li>
+      </ul>
+      <figure class="shot">
+        <img class="only-light" src="img/dashboard-light.png" width="1014" height="917" alt="A studio dashboard built with Covi-pi-1: side navigation, OLED stat tiles, an input level meter and a recent sessions table." loading="lazy">
+        <img class="only-dark" src="img/dashboard-dark.png" width="1005" height="917" alt="The same dashboard in the dark Graphite theme." loading="lazy">
+        <figcaption class="cp-caption">The dashboard pattern, built only from Covi-pi-1 components.</figcaption>
+      </figure>
+      <div class="pair">
+        <figure class="shot"><img src="img/screen-menu.png" width="597" height="352" alt="A device screen titled Record settings with OK and BACK key hints." loading="lazy"><figcaption class="cp-caption">DeviceScreen: menus that page like hardware.</figcaption></figure>
+        <figure class="shot"><img src="img/transport.png" width="376" height="132" alt="Transport keys: back, record, play, stop and forward." loading="lazy"><figcaption class="cp-caption">Transport keys with real keyboard shortcuts.</figcaption></figure>
+      </div>
+    </section>
+
+    <section id="access" class="wrap section" aria-labelledby="h-access">
+      <p class="cp-label">Access</p>
+      <h2 id="h-access" class="cp-h2">The repository is private. Ask, and you're in.</h2>
+      <ol class="steps">
+        <li class="cp-panel"><span class="cp-mono step__n">01</span><h3 class="cp-h3">Have a GitHub account</h3><p class="cp-text">Access is given to a GitHub username.</p></li>
+        <li class="cp-panel"><span class="cp-mono step__n">02</span><h3 class="cp-h3">Send a request</h3><p class="cp-text">Fill in the short form. It opens as a public issue on this page's repository, so don't put private details in it.</p></li>
+        <li class="cp-panel"><span class="cp-mono step__n">03</span><h3 class="cp-h3">Accept the invitation</h3><p class="cp-text">GitHub emails you an invitation to the repository and its npm package.</p></li>
+      </ol>
+      <p><a class="cp-button cp-button--primary" href="https://github.com/coviyarce/covi-pi-1/issues/new?template=request-access.yml"><span class="cp-button__disc" aria-hidden="true"></span><span class="cp-button__label">Request access</span></a></p>
+      <p class="cp-caption">You can browse every component without access in the <a class="cp-link" href="https://op1.covilabs.com">live Storybook</a>.</p>
+    </section>
+
+    <section id="licence" class="wrap section" aria-labelledby="h-licence">
+      <p class="cp-label">Licence</p>
+      <h2 id="h-licence" class="cp-h2">Creative Commons Attribution 4.0</h2>
+      <p class="cp-text measure">Use, share and adapt Covi-pi-1, including in commercial work, as long as you give credit, link to the licence and say if you changed it. A credit line like this is enough:</p>
+      <div class="credit cp-panel">
+        <code class="cp-mono" id="credit">"Covi-pi-1 Design" by Luis Carlos Covilla Yarce, CC BY 4.0, https://coviyarce.github.io/covi-pi-1/</code>
+        <button type="button" class="cp-button cp-button--sm" id="copy"><span class="cp-button__label">Copy</span></button>
+      </div>
+      <p class="cp-caption measure">The licence covers the original work only. The bundled open-source icons (Lucide, ISC) and fonts (Jost and IBM Plex Mono, SIL OFL 1.1) keep their own licences. <a class="cp-link" href="https://creativecommons.org/licenses/by/4.0/">Read the licence summary</a>.</p>
+      <p class="sr-status" role="status" aria-live="polite" id="status"></p>
+    </section>
+  </main>
+
+  <footer class="wrap site-foot">
+    <span class="cp-grille cp-grille-block cp-grille-block--sm cp-grille-block--fine" aria-hidden="true"></span>
+    <p class="cp-caption">© 2026 Luis Carlos Covilla Yarce · Covi-pi-1 Design · <a class="cp-link" href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a> · This page is made with Covi-pi-1's own CSS.</p>
+  </footer>
+
+  <script>
+    // Theme switch: System → Light → Dark.
+    const order = ['system', 'light', 'dark']
+    const names = { system: 'System', light: 'Light', dark: 'Dark' }
+    const btn = document.getElementById('theme'), label = document.getElementById('theme-label')
+    const show = (t) => { label.textContent = names[t]; btn.setAttribute('aria-label', 'Theme: ' + (t === 'system' ? 'follow the system' : names[t].toLowerCase()) + '. Change theme') }
+    show(document.documentElement.dataset.theme || 'system')
+    btn.addEventListener('click', () => {
+      const cur = document.documentElement.dataset.theme || 'system'
+      const next = order[(order.indexOf(cur) + 1) % order.length]
+      document.documentElement.dataset.theme = next
+      try { localStorage.setItem('cp-theme', next) } catch (e) {}
+      show(next)
+    })
+    // Toggle keys in the parts demo.
+    document.querySelectorAll('[data-toggle]').forEach((k) => k.addEventListener('click', () => {
+      const on = k.getAttribute('aria-pressed') !== 'true'
+      k.setAttribute('aria-pressed', String(on))
+      k.querySelector('.cp-key__led').classList.toggle('cp-led--on', on)
+      k.querySelector('.cp-key__led').classList.toggle('cp-led--green', on)
+    }))
+    // Copy the credit line.
+    document.getElementById('copy').addEventListener('click', async () => {
+      const s = document.getElementById('status')
+      try { await navigator.clipboard.writeText(document.getElementById('credit').textContent); s.textContent = 'Credit line copied.' }
+      catch (e) { s.textContent = 'Copy failed: select the line and copy it by hand.' }
+    })
+  </script>
+</body>
+</html>

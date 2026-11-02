@@ -1,0 +1,23 @@
+/* CpGrille. Sizes and shapes for the .cp-grille dot grid from base.css. Decorative. */
+
+.cp-grille-block {
+  display: block;
+  width: 100%;
+  min-width: 0;
+}
+.cp-grille-block--sm { height: var(--cp-space-16); }
+.cp-grille-block--md { height: calc(var(--cp-unit) * 2 + var(--cp-gap)); }
+.cp-grille-block--lg { height: calc(var(--cp-unit) * 3 + var(--cp-gap) * 2); }
+.cp-grille-block--fill { height: 100%; min-height: var(--cp-space-16); }
+
+.cp-grille-block--round {
+  width: auto;
+  aspect-ratio: 1;
+  border-radius: 50%;
+}
+
+.cp-grille-block--fine { background-size: 6px 6px; background-image: radial-gradient(circle, var(--cp-grille-dot) 1px, transparent 1.4px); }
+
+@media (forced-colors: active) {
+  .cp-grille-block { forced-color-adjust: none; background-color: Canvas; background-image: radial-gradient(circle, CanvasText 1.2px, transparent 1.6px); }
+}

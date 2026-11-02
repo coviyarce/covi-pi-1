@@ -1,0 +1,29 @@
+/* CpKeyPanel. Keys set into a .cp-panel: a grid of 1u columns with the groove between keys.
+   Rows use subgrid so 2u keys line up with the 1u keys above and below. */
+
+.cp-key-panel {
+  --cp-key-panel-columns: 4;
+  grid-template-columns: repeat(var(--cp-key-panel-columns), minmax(var(--cp-target), var(--cp-unit)));
+  width: max-content;
+  max-width: 100%;
+}
+
+.cp-key-panel__row {
+  display: grid;
+  grid-column: 1 / -1;
+  grid-template-columns: subgrid;
+  gap: var(--cp-gap);
+}
+
+.cp-key-panel__cell { display: flex; min-width: 0; }
+.cp-key-panel__cell--2u { grid-column: span 2; }
+.cp-key-panel__cell > .cp-key { width: 100%; min-width: 0; }
+
+@media (max-width: 599px) {
+  /* At small widths the columns shrink to fit, down to the 44 px target. */
+  .cp-key-panel { width: 100%; grid-template-columns: repeat(var(--cp-key-panel-columns), minmax(0, 1fr)); }
+}
+
+@media (forced-colors: active) {
+  .cp-key-panel { border: 1px solid CanvasText; }
+}

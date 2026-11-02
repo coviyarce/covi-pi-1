@@ -1,0 +1,225 @@
+/* Covi-pi-1 Design: base layer. Page defaults, type, focus, and the hardware primitives
+   (body, panel, grille, dot) that are plain CSS rather than components. */
+
+/* Fonts are self-hosted from @fontsource (see fonts.css); no Google Fonts request at runtime. */
+@import './fonts.css';
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--cp-page);
+  color: var(--cp-ink);
+  font-family: var(--cp-font);
+  font-size: var(--cp-text-body);
+  line-height: 1.5;
+  font-weight: var(--cp-weight-regular);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Focus is always visible on keyboard use. Components never remove it without a replacement. */
+:focus-visible {
+  outline: var(--cp-focus-width) solid var(--cp-focus);
+  outline-offset: var(--cp-focus-offset);
+}
+
+/* ---- the focus ring on a raised key ----
+   A raised key cap draws a lip below its box (the 0 1px / 0 2px lines of --cp-key-shadow). An
+   outline is drawn around the box only, so it left a 2 px gap above the cap and none below the
+   lip: the ring looked low, and the legend looked high inside it. On these controls the ring is
+   drawn by ::before instead, around the cap and its lip, with the control's own outline width and
+   offset: the same gap on all four sides. A pressed or selected key sinks onto a 1 px lip.
+   Disabled keys are flat (no lip) and keep their plain outline; so does forced-colours mode.
+   Select, input and textarea draw no pseudo elements and keep their plain outline too.
+   A new raised-key control joins by adding its class to both lists. */
+@media (forced-colors: none) {
+  :where(.cp-button, .cp-key, .cp-toggle, .cp-pagination__key, .cp-accordion__header, .cp-tabs__tab,
+    .cp-tag, .cp-tag__remove, .cp-steps__key, .cp-navbar__link, .cp-navbar__toggle, .cp-bottom-nav__link,
+    .cp-sidenav__link, .cp-list__row, .cp-float-button, .cp-back-top__key, .cp-skip-link, .cp-switch__key,
+    .cp-slider__thumb, .cp-timepicker__segment, .cp-file-upload__zone,
+    .cp-image-list__zoom, .cp-image-list__frame--button, .cp-image__frame--button, .cp-image__zoom,
+    .cp-calview__agenda-item, .cp-splitter__nudge,
+    .cp-calendar__key, .cp-swatch__key, .cp-segmented__key, .cp-card--key, .cp-select__control):focus-visible {
+    position: relative;
+    z-index: 1;
+  }
+  :is(.cp-button, .cp-key, .cp-toggle, .cp-pagination__key, .cp-accordion__header, .cp-tabs__tab,
+    .cp-tag, .cp-tag__remove, .cp-steps__key, .cp-navbar__link, .cp-navbar__toggle, .cp-bottom-nav__link,
+    .cp-sidenav__link, .cp-list__row, .cp-float-button, .cp-back-top__key, .cp-skip-link, .cp-switch__key,
+    .cp-slider__thumb, .cp-timepicker__segment, .cp-file-upload__zone,
+    .cp-image-list__zoom, .cp-image-list__frame--button, .cp-image__frame--button, .cp-image__zoom,
+    .cp-calview__agenda-item, .cp-splitter__nudge,
+    .cp-calendar__key, .cp-swatch__key, .cp-segmented__key, .cp-card--key, .cp-select__control):focus-visible:not(select, input, textarea, :disabled, [aria-disabled="true"], .is-disabled) {
+    --cp-ring-lip: var(--cp-focus-lip);
+    outline-color: transparent !important;
+  }
+  :is(.cp-button, .cp-key, .cp-toggle, .cp-pagination__key, .cp-accordion__header, .cp-tabs__tab,
+    .cp-tag, .cp-tag__remove, .cp-steps__key, .cp-navbar__link, .cp-navbar__toggle, .cp-bottom-nav__link,
+    .cp-sidenav__link, .cp-list__row, .cp-float-button, .cp-back-top__key, .cp-skip-link, .cp-switch__key,
+    .cp-slider__thumb, .cp-timepicker__segment, .cp-file-upload__zone,
+    .cp-image-list__zoom, .cp-image-list__frame--button, .cp-image__frame--button, .cp-image__zoom,
+    .cp-calview__agenda-item, .cp-splitter__nudge,
+    .cp-calendar__key, .cp-swatch__key, .cp-segmented__key, .cp-card--key, .cp-select__control):focus-visible:not(select, input, textarea, :disabled, [aria-disabled="true"], .is-disabled):is(.is-pressed, .is-selected, .is-current, .is-active, .is-checked, [aria-pressed="true"], [aria-selected="true"], [aria-checked="true"], [aria-current]:not([aria-current="false"]), :active):not(.cp-sidenav__link) {
+    --cp-ring-lip: var(--cp-focus-lip-pressed);
+  }
+  :is(.cp-button, .cp-key, .cp-toggle, .cp-pagination__key, .cp-accordion__header, .cp-tabs__tab,
+    .cp-tag, .cp-tag__remove, .cp-steps__key, .cp-navbar__link, .cp-navbar__toggle, .cp-bottom-nav__link,
+    .cp-sidenav__link, .cp-list__row, .cp-float-button, .cp-back-top__key, .cp-skip-link, .cp-switch__key,
+    .cp-slider__thumb, .cp-timepicker__segment, .cp-file-upload__zone,
+    .cp-image-list__zoom, .cp-image-list__frame--button, .cp-image__frame--button, .cp-image__zoom,
+    .cp-calview__agenda-item, .cp-splitter__nudge,
+    .cp-calendar__key, .cp-swatch__key, .cp-segmented__key, .cp-card--key, .cp-select__control):focus-visible:not(select, input, textarea, :disabled, [aria-disabled="true"], .is-disabled)::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 calc(-1 * var(--cp-ring-lip)) 0;
+    width: auto;
+    height: auto;
+    border-radius: inherit;
+    outline-style: solid;
+    outline-width: inherit;
+    outline-offset: inherit;
+    outline-color: var(--cp-focus);
+    pointer-events: none;
+  }
+  /* A native select draws no pseudo elements: its key wrapper draws the ring. */
+  .cp-select__control:focus-visible:not(:disabled) { outline-color: transparent !important; }
+  .cp-select__key:has(> .cp-select__control:focus-visible:not(:disabled))::before {
+    content: "";
+    position: absolute;
+    z-index: 1;
+    inset: 0 0 calc(-1 * var(--cp-focus-lip)) 0;
+    border-radius: var(--cp-radius-key);
+    outline: var(--cp-focus-width) solid var(--cp-focus);
+    outline-offset: var(--cp-focus-offset);
+    pointer-events: none;
+  }
+}
+
+::selection {
+  background: var(--cp-ink);
+  color: var(--cp-key);
+}
+
+/* ---- type ---- */
+.cp-display-text { font-size: var(--cp-text-display); line-height: 1.08; font-weight: var(--cp-weight-thin); letter-spacing: -0.02em; margin: 0; }
+.cp-h1 { font-size: var(--cp-text-h1); line-height: 1.15; font-weight: var(--cp-weight-regular); letter-spacing: -0.01em; margin: 0; }
+.cp-h2 { font-size: var(--cp-text-h2); line-height: 1.2; font-weight: var(--cp-weight-regular); margin: 0; }
+.cp-h3 { font-size: var(--cp-text-h3); line-height: 1.3; font-weight: var(--cp-weight-medium); margin: 0; }
+.cp-lead { font-size: var(--cp-text-lead); line-height: 1.55; color: var(--cp-ink-muted); font-weight: var(--cp-weight-thin); margin: 0; max-width: 62ch; }
+.cp-text { font-size: var(--cp-text-body); line-height: 1.6; color: var(--cp-ink-muted); margin: 0; max-width: 68ch; }
+.cp-caption { font-size: var(--cp-text-caption); line-height: 1.45; color: var(--cp-ink-muted); }
+.cp-label { font-size: var(--cp-text-label); line-height: 1.3; letter-spacing: 0.02em; color: var(--cp-ink-muted); }
+.cp-mono { font-family: var(--cp-font-mono); font-variant-numeric: tabular-nums; }
+
+.cp-link {
+  color: var(--cp-ink);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  border-radius: 2px;
+}
+.cp-link:hover { text-decoration-thickness: 2px; }
+.cp-link:visited { color: var(--cp-ink-muted); }
+
+.cp-sr-only {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ---- hardware primitives ---- */
+
+/* Surface rule. Key (--cp-key, --cp-card-key): keys, buttons, small and medium cards. Satin
+   (--cp-surface-satin): big elements, so every .cp-body chassis. Satin edge (--cp-surface-hero):
+   the one hero surface of a page, as .cp-body--hero. */
+/* The chassis: satin aluminium. */
+.cp-body {
+  background: var(--cp-surface-satin);
+  border-radius: var(--cp-radius-body);
+  box-shadow: var(--cp-surface-satin-shadow);
+  padding: var(--cp-space-3);
+}
+.cp-body--hero {
+  background: var(--cp-surface-hero);
+  box-shadow: var(--cp-surface-hero-shadow);
+}
+
+/* A panel holds keys; the gap shows the groove colour, like keys set into the chassis. */
+.cp-panel {
+  display: grid;
+  gap: var(--cp-gap);
+  padding: var(--cp-gap);
+  background: var(--cp-groove);
+  border-radius: var(--cp-radius-panel);
+}
+
+/* Speaker grille: a dot grid. Decorative. */
+.cp-grille {
+  --cp-grille-dot: var(--cp-ink-faint);
+  background-color: var(--cp-key-lo);
+  background-image: radial-gradient(circle, var(--cp-grille-dot) 1.4px, transparent 1.8px);
+  background-size: 9px 9px;
+  background-position: center;
+  border-radius: var(--cp-radius-key);
+}
+
+/* Black "sharp" dot. Decorative unless wrapped in a control. */
+.cp-dot {
+  display: inline-block;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #3A3A3C 0%, var(--cp-dot) 60%);
+  box-shadow: inset 0 -1px 1px rgba(255, 255, 255, 0.08), 0 1px 1px rgba(0, 0, 0, 0.25);
+}
+
+/* Status light. Always paired with text: colour is never the only signal. */
+.cp-led {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--cp-led, var(--cp-ink-faint));
+  box-shadow: 0 0 0 2px var(--cp-key-lo);
+  flex-shrink: 0;
+}
+/* A lit LED keeps its signal colour and gets a 1 px ring in the graphic token, so its edge
+   reaches 3:1 on keys and on the page in both themes (1.4.11). */
+.cp-led--blue { --cp-led: var(--cp-blue); --cp-led-ring: var(--cp-blue-graphic); }
+.cp-led--green { --cp-led: var(--cp-green); --cp-led-ring: var(--cp-green-graphic); }
+.cp-led--orange { --cp-led: var(--cp-orange); --cp-led-ring: var(--cp-orange-graphic); }
+.cp-led--red { --cp-led: var(--cp-red); --cp-led-ring: var(--cp-red-graphic); }
+.cp-led--on { box-shadow: inset 0 0 0 1px var(--cp-led-ring, transparent), 0 0 0 2px var(--cp-key-lo), 0 0 6px var(--cp-led); }
+
+/* ---- right-to-left ----
+   Icons that point along the line (back, forward, next, previous) mirror in right-to-left text
+   (an ancestor with dir="rtl", as CpLocaleProvider sets). Media transport, clocks, check marks
+   and logos do not. Components that rotate a chevron for an open state set their own transform,
+   which wins over this rule. [dir] is used rather than :dir() because CSS minifiers rewrite
+   :dir() into :lang() lists for older browsers. */
+[dir="rtl"] :is(.lucide-chevron-left, .lucide-chevron-right, .lucide-chevrons-left, .lucide-chevrons-right,
+  .lucide-arrow-left, .lucide-arrow-right, .lucide-move-left, .lucide-move-right, .lucide-corner-down-left,
+  .lucide-undo, .lucide-redo, .lucide-undo-2, .lucide-redo-2, .lucide-log-in, .lucide-log-out) {
+  transform: scaleX(-1);
+}
+[dir="rtl"] [dir="ltr"] :is(.lucide-chevron-left, .lucide-chevron-right, .lucide-chevrons-left, .lucide-chevrons-right,
+  .lucide-arrow-left, .lucide-arrow-right, .lucide-move-left, .lucide-move-right, .lucide-corner-down-left,
+  .lucide-undo, .lucide-redo, .lucide-undo-2, .lucide-redo-2, .lucide-log-in, .lucide-log-out) {
+  transform: none;
+}
+
+@media (forced-colors: active) {
+  .cp-body, .cp-panel { border: 1px solid CanvasText; }
+  .cp-led { background: CanvasText; }
+}

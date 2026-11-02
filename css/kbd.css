@@ -1,0 +1,34 @@
+/* CpKbd. A tiny white key cap with a 2 px lip, mono legend. */
+
+.cp-kbd {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 24px;
+  min-height: 24px;
+  padding: 0 var(--cp-space-2);
+  border-radius: 5px;
+  background: linear-gradient(180deg, var(--cp-key-hi) 0%, var(--cp-key) 45%, var(--cp-key-lo) 100%);
+  box-shadow: var(--cp-key-shadow);
+  color: var(--cp-ink);
+  font-family: var(--cp-font-mono);
+  font-size: var(--cp-text-label);
+  line-height: 1;
+  white-space: nowrap;
+  vertical-align: 0.1em;
+  margin-bottom: 2px;
+}
+
+.cp-kbd-combo {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--cp-space-1);
+  font-family: var(--cp-font-mono);
+}
+
+.cp-kbd-combo__plus { font-size: var(--cp-text-label); color: var(--cp-ink-muted); }
+
+@media (forced-colors: active) {
+  .cp-kbd { border: 1px solid CanvasText; }
+}
