@@ -4,7 +4,7 @@
 
 **A tactile, hardware-inspired design system for the web.**
 
-[**Project page**](https://coviyarce.github.io/covi-pi-1/) · [**Live Storybook**](https://op1.covilabs.com) · [**Request access**](https://github.com/coviyarce/covi-pi-1/issues/new?template=request-access.yml)
+[**Project page**](https://coviyarce.github.io/covi-pi-1/) · [**Live Storybook**](https://op1.covilabs.com) · [**Request access**](https://coviyarce.github.io/covi-pi-1/#access)
 
 [![Licence: CC BY 4.0](https://img.shields.io/badge/licence-CC%20BY%204.0-2b2b2b?style=flat-square)](LICENSE)
 
@@ -15,7 +15,7 @@
 
 </div>
 
-This repository holds only the public project page for Covi-pi-1 Design, served by GitHub Pages at <https://coviyarce.github.io/covi-pi-1/>. The design system's source is in a private repository; to get access, [open an access request](https://github.com/coviyarce/covi-pi-1/issues/new?template=request-access.yml) with your GitHub username.
+This repository holds only the public project page for Covi-pi-1 Design, served by GitHub Pages at <https://coviyarce.github.io/covi-pi-1/>. The design system's source is in a private repository; access is granted only under the [Attribution Agreement](ATTRIBUTION_AGREEMENT.md): accept it, write your own attribution promise and sign on the [request form](https://coviyarce.github.io/covi-pi-1/#access).
 
 The page is plain HTML styled with Covi-pi-1's own built CSS (`css/`, from v3.0.0). To update it, rebuild the design system (`npm run build:lib`) and copy `dist/tokens.css`, `base.css`, `fonts.css`, `fonts/` and the component stylesheets the page uses.
 

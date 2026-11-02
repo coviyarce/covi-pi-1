@@ -39,6 +39,7 @@
       <nav aria-label="Page" class="site-nav">
         <a class="cp-link" href="#parts">Parts</a>
         <a class="cp-link" href="#inside">Inside</a>
+        <a class="cp-link" href="#uses">Built with</a>
         <a class="cp-link" href="#access">Access</a>
         <a class="cp-link" href="#licence">Licence</a>
       </nav>
@@ -55,7 +56,7 @@
         <h1 id="h-hero" class="cp-h1">A design system you can almost touch.</h1>
         <p class="cp-lead">Covi-pi-1 is a tactile, hardware-inspired design system for the web: an aluminium body, white key caps, coloured knobs and a black OLED read-out, as 124 Vue&nbsp;3 components and CSS tokens.</p>
         <div class="hero__actions">
-          <a class="cp-button cp-button--primary cp-button--lg" href="https://github.com/coviyarce/covi-pi-1/issues/new?template=request-access.yml">
+          <a class="cp-button cp-button--primary cp-button--lg" href="#access">
             <span class="cp-button__disc" aria-hidden="true"></span><span class="cp-button__label">Request access</span>
           </a>
           <a class="cp-button cp-button--lg" href="https://op1.covilabs.com">
@@ -144,16 +145,80 @@
       </div>
     </section>
 
+    <section id="uses" class="wrap section" aria-labelledby="h-uses">
+      <p class="cp-label">Built with Covi-pi-1</p>
+      <h2 id="h-uses" class="cp-h2">Already shipping, and growing</h2>
+      <div class="uses">
+        <article class="satin use">
+          <img src="img/use-fuji.png" width="1280" height="690" alt="Fuji's Discover page: a key-cap navigation bar, a search field with an orange Search key, film simulation and mood chips, and a lighting card." loading="lazy">
+          <div class="use__body">
+            <span class="cp-status-light cp-status-light--on"><span class="cp-led cp-status-light__led cp-led--green cp-led--on" aria-hidden="true"></span><span class="cp-status-light__text">In use</span></span>
+            <h3 class="cp-h3">Fuji, a camera companion</h3>
+            <p class="cp-text">A personal app for the Fujifilm X-S20: film recipes and C1–C4 bank planning, the camera manual searchable in English and Spanish, recipe import from posts, and studio lighting setups with top and side diagrams converted to the gear you own. Navigation is a row of key caps; read-outs are OLED displays.</p>
+          </div>
+        </article>
+        <article class="satin use">
+          <img class="only-light" src="img/use-cv.png" width="1280" height="800" alt="coviyarce.com: a key-cap navigation bar, an OLED role badge, a large thin headline and Download CV and Explore Skills keys." loading="lazy">
+          <img class="only-dark" src="img/use-cv-dark.png" width="1280" height="800" alt="coviyarce.com in the dark Graphite theme." loading="lazy">
+          <div class="use__body">
+            <span class="cp-status-light cp-status-light--on"><span class="cp-led cp-status-light__led cp-led--green cp-led--on" aria-hidden="true"></span><span class="cp-status-light__text">Live</span></span>
+            <h3 class="cp-h3"><a class="cp-link" href="https://coviyarce.com">coviyarce.com</a>, a portfolio</h3>
+            <p class="cp-text">The author's portfolio and CV: satin hero, key-cap navigation, an OLED role badge, skills and case studies, both themes. Its contact form is sent through the same mailer as the access requests below.</p>
+          </div>
+        </article>
+        <article class="satin use">
+          <div class="use__mock" aria-hidden="true">
+            <figure class="cp-display cp-display--text">
+              <div class="cp-display__screen"><div class="cp-display__head"><span class="cp-display__title">Runs</span><span class="cp-display__aside">today</span></div>
+              <div class="cp-display__body"><p class="cp-display__value">42<span class="cp-display__unit">&nbsp;active</span></p></div></div>
+            </figure>
+            <ul class="use__states">
+              <li><span class="cp-status-light"><span class="cp-led cp-status-light__led cp-led--blue cp-led--on"></span><span class="cp-status-light__text">Queued</span></span></li>
+              <li><span class="cp-status-light"><span class="cp-led cp-status-light__led cp-led--green cp-led--on"></span><span class="cp-status-light__text">Running</span></span></li>
+              <li><span class="cp-status-light"><span class="cp-led cp-status-light__led cp-led--orange cp-led--on"></span><span class="cp-status-light__text">Needs a look</span></span></li>
+              <li><span class="cp-status-light"><span class="cp-led cp-status-light__led cp-led--red cp-led--on"></span><span class="cp-status-light__text">Failed</span></span></li>
+            </ul>
+          </div>
+          <div class="use__body">
+            <span class="cp-status-light cp-status-light--on"><span class="cp-led cp-status-light__led cp-led--orange cp-led--on" aria-hidden="true"></span><span class="cp-status-light__text">In development</span></span>
+            <h3 class="cp-h3">A workflow console</h3>
+            <p class="cp-text">A friend is building a console for monitoring automated workflows on Covi-pi-1: run states as status lights, live numbers on OLED read-outs, and tables that show the essentials first and reveal detail on demand. Illustration only; the product is not public yet.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
     <section id="access" class="wrap section" aria-labelledby="h-access">
       <p class="cp-label">Access</p>
       <h2 id="h-access" class="cp-h2">The repository is private. Ask, and you're in.</h2>
       <ol class="steps">
-        <li class="satin"><span class="cp-mono step__n">01</span><h3 class="cp-h3">Have a GitHub account</h3><p class="cp-text">Access is given to a GitHub username.</p></li>
-        <li class="satin"><span class="cp-mono step__n">02</span><h3 class="cp-h3">Send a request</h3><p class="cp-text">Fill in the short form. It opens as a public issue on this page's repository, so don't put private details in it.</p></li>
-        <li class="satin"><span class="cp-mono step__n">03</span><h3 class="cp-h3">Accept the invitation</h3><p class="cp-text">GitHub emails you an invitation to the repository and its npm package.</p></li>
+        <li class="satin"><span class="cp-mono step__n">01</span><h3 class="cp-h3">Read the agreement</h3><p class="cp-text">Access is granted only under the <a class="cp-link" href="attribution.html">Attribution Agreement</a>. It is the only way in.</p></li>
+        <li class="satin"><span class="cp-mono step__n">02</span><h3 class="cp-h3">Write your promise and sign</h3><p class="cp-text">In your own words, promise how you will credit Covi-pi-1, then sign with your full name.</p></li>
+        <li class="satin"><span class="cp-mono step__n">03</span><h3 class="cp-h3">Accept the invitation</h3><p class="cp-text">Once approved, GitHub emails you an invitation to the repository and its package.</p></li>
       </ol>
-      <p><a class="cp-button cp-button--primary" href="https://github.com/coviyarce/covi-pi-1/issues/new?template=request-access.yml"><span class="cp-button__disc" aria-hidden="true"></span><span class="cp-button__label">Request access</span></a></p>
-      <p class="cp-caption">You can browse every component without access in the <a class="cp-link" href="https://op1.covilabs.com">live Storybook</a>.</p>
+
+      <form id="access-form" class="satin access-form" novalidate>
+        <h3 class="cp-h3" style="margin: 0">Request access</h3>
+        <div class="fields">
+          <label class="fld"><span class="cp-label">Full name</span><input class="inp" name="name" autocomplete="name" required maxlength="120"><span class="err" data-for="name"></span></label>
+          <label class="fld"><span class="cp-label">Email</span><input class="inp" name="email" type="email" autocomplete="email" required maxlength="200"><span class="err" data-for="email"></span></label>
+          <label class="fld"><span class="cp-label">GitHub username</span><input class="inp" name="github" autocomplete="username" required maxlength="39" placeholder="octocat"><span class="err" data-for="github"></span></label>
+          <label class="fld fld--wide"><span class="cp-label">What will you use it for? <span class="muted">(optional)</span></span><input class="inp" name="use" maxlength="2000"></label>
+          <label class="fld fld--wide"><span class="cp-label">Your attribution promise, in your own words</span>
+            <textarea class="inp" name="promise" rows="4" required maxlength="1500" aria-describedby="promise-hint"></textarea>
+            <span class="cp-caption" id="promise-hint">Say where and how you will credit "Covi-pi-1 Design" by Luis Carlos Covilla Yarce (CC BY 4.0). Write it yourself: at least 60 characters, naming Covi-pi-1 Design.</span>
+            <span class="err" data-for="promise"></span></label>
+          <label class="fld"><span class="cp-label">Signature: type your full name</span><input class="inp" name="signature" required maxlength="120"><span class="err" data-for="signature"></span></label>
+          <label class="fld fld--check fld--wide"><input type="checkbox" name="agreement" required> <span class="cp-text">I have read and accept the <a class="cp-link" href="attribution.html">Covi-pi-1 Design Attribution Agreement, version 1.0</a>. I understand that using the work without the attribution I promised ends my licence and is copyright infringement, and that presenting it as my own is plagiarism.</span></label>
+          <span class="err fld--wide" data-for="agreement"></span>
+          <label class="hp" aria-hidden="true">Website <input name="website" tabindex="-1" autocomplete="off"></label>
+        </div>
+        <div class="row-end">
+          <p class="cp-text form-msg" id="form-msg" role="status" aria-live="polite"></p>
+          <button type="submit" class="cp-button cp-button--primary"><span class="cp-button__disc" aria-hidden="true"></span><span class="cp-button__label">Accept and send request</span></button>
+        </div>
+      </form>
+      <p class="cp-caption">Your request is emailed privately to the author and kept as the record of the agreement. You can browse every component without access in the <a class="cp-link" href="https://op1.covilabs.com">live Storybook</a>.</p>
     </section>
 
     <section id="licence" class="wrap section" aria-labelledby="h-licence">
@@ -195,6 +260,40 @@
       k.querySelector('.cp-key__led').classList.toggle('cp-led--on', on)
       k.querySelector('.cp-key__led').classList.toggle('cp-led--green', on)
     }))
+    // Access request: posted to the contact mailer, which emails the author the signed agreement.
+    const form = document.getElementById('access-form'), msg = document.getElementById('form-msg')
+    const loadedAt = Date.now()
+    form.addEventListener('submit', async (ev) => {
+      ev.preventDefault()
+      form.querySelectorAll('.err').forEach((e) => (e.textContent = ''))
+      form.querySelectorAll('[aria-invalid]').forEach((e) => e.removeAttribute('aria-invalid'))
+      const f = new FormData(form)
+      const body = Object.fromEntries([...f.entries()].filter(([k]) => k !== 'agreement'))
+      body.agreement = f.get('agreement') === 'on'
+      body.agreement_version = '1.0'
+      body.elapsed = Date.now() - loadedAt
+      const btn = form.querySelector('button[type=submit]')
+      btn.setAttribute('aria-busy', 'true'); btn.disabled = true
+      msg.textContent = 'Sending…'
+      try {
+        const r = await fetch('https://contact.covilabs.com/op1-access', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) })
+        const d = await r.json().catch(() => ({}))
+        if (r.ok) {
+          form.reset()
+          msg.textContent = 'Request sent. The author will review it and GitHub will email you an invitation.'
+        } else {
+          msg.textContent = d.error || 'The request could not be sent.'
+          let first = null
+          for (const [k, v] of Object.entries(d.fields || {})) {
+            const e = form.querySelector(`.err[data-for="${k}"]`); if (e) e.textContent = v
+            const i = form.querySelector(`[name="${k}"]`); if (i) { i.setAttribute('aria-invalid', 'true'); first = first || i }
+          }
+          first && first.focus()
+        }
+      } catch (e) {
+        msg.textContent = 'Network error: the request was not sent. Please try again.'
+      } finally { btn.removeAttribute('aria-busy'); btn.disabled = false }
+    })
     // Copy the credit line.
     document.getElementById('copy').addEventListener('click', async () => {
       const s = document.getElementById('status')
